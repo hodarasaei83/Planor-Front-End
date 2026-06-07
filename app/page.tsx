@@ -1,10 +1,8 @@
 'use client';
 
-import { LoginForm } from '@/features/auth/components/LoginForm';
-
-export default function TestPage() {
+export default function Page() {
 
   return (
-    <LoginForm />
+    <div>landing</div>
   );
 }

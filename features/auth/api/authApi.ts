@@ -1,7 +1,5 @@
 import axiosInstance from '@/features/shared/utils/axios/axios';
 import { AxiosError } from 'axios';
-
-// ============ Types ============
 export interface LoginCredentials {
   username: string;
   password: string;
@@ -27,10 +25,8 @@ export interface AuthResponse {
   user: User;
 }
 
-// ============ Mock Mode (فقط برای توسعه) ============
 const IS_MOCK = process.env.NEXT_PUBLIC_USE_MOCK === 'true' || !process.env.NEXT_PUBLIC_API_BASE_URL;
 
-// ============ Helper برای مدیریت خطا ============
 const getErrorMessage = (error: unknown): string => {
   if (error instanceof AxiosError) {
     return error.response?.data?.message || error.message || 'Network error';
@@ -41,7 +37,6 @@ const getErrorMessage = (error: unknown): string => {
   return 'An unexpected error occurred';
 };
 
-// ============ Mock Functions ============
 const mockLogin = async (credentials: LoginCredentials): Promise<AuthResponse> => {
   await new Promise(resolve => setTimeout(resolve, 800));
   
@@ -94,7 +89,6 @@ const mockGetMe = async (): Promise<User> => {
   };
 };
 
-// ============ Real API Functions ============
 const realLogin = async (credentials: LoginCredentials): Promise<AuthResponse> => {
   const response = await axiosInstance.post<AuthResponse>('/auth/login', credentials);
   return response.data;
@@ -110,14 +104,12 @@ const realGetMe = async (): Promise<User> => {
   return response.data;
 };
 
-// ============ Main API (با سوئیچ ساده) ============
 export const authApi = {
   login: async (credentials: LoginCredentials): Promise<AuthResponse> => {
     const result = IS_MOCK 
       ? await mockLogin(credentials)
       : await realLogin(credentials);
     
-    // ذخیره خودکار توکن
     localStorage.setItem('accessToken', result.accessToken);
     return result;
   },
@@ -142,5 +134,4 @@ export const authApi = {
   },
 };
 
-// اکسپورت تابع کمکی برای استفاده در فرم‌ها
 export { getErrorMessage };

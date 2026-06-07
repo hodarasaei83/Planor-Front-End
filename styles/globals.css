@@ -123,5 +123,12 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
+}
+
+input[type="password"],
+input[type="number"] {
+  direction: ltr;
+  text-align: left;
 }
