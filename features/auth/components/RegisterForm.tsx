@@ -1,25 +1,31 @@
-'use client';
+'use client'
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { authApi, getErrorMessage } from '@/features/auth/api/authApi';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Label } from '@/components/ui/label';
+import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { authApi, getErrorMessage } from '@/features/auth/api/authApi'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from '@/components/ui/card'
+import { Label } from '@/components/ui/label'
 
 export function RegisterForm() {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState('');
-  const router = useRouter();
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
+  const router = useRouter()
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const formData = new FormData(e.currentTarget);
-    
-    setLoading(true);
-    setError('');
-    
+    e.preventDefault()
+    const formData = new FormData(e.currentTarget)
+
+    setLoading(true)
+    setError('')
+
     try {
       await authApi.register({
         name: formData.get('name') as string,
@@ -27,21 +33,22 @@ export function RegisterForm() {
         email: formData.get('email') as string,
         password: formData.get('password') as string,
         confirmPassword: formData.get('confirmPassword') as string,
-      });
-      router.push('/home');
+      })
+      router.push('/home')
+      console.log(formData.get('name'))
     } catch (err) {
-      setError(getErrorMessage(err));
+      setError(getErrorMessage(err))
     } finally {
-      setLoading(false);
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <Card className="w-full max-w-md mx-auto my-auto h-full">
-      <CardHeader className='flex flex-col items-center justify-center'>
+      <CardHeader className="flex flex-col items-center justify-center">
         <CardTitle>ساخت اکانت</CardTitle>
-        <CardDescription className='mb-3'>
-        امروز سازماندهی پروژه هایتان را شروع کنید        
+        <CardDescription className="mb-3">
+          به جمع حرفه‌ای‌ها بپیوندید و از امروز پروژه‌هایتان را سامان دهید
         </CardDescription>
       </CardHeader>
       <CardContent>
@@ -51,7 +58,18 @@ export function RegisterForm() {
               {error}
             </div>
           )}
-          
+
+          <div className="space-y-2">
+            <Label htmlFor="name">نام و نام خانوادگی</Label>
+            <Input
+              id="name"
+              name="name"
+              placeholder="نام و نام خانوادگی را وارد کنید"
+              required
+              disabled={loading}
+            />
+          </div>
+
           <div className="space-y-2">
             <Label htmlFor="username">نام کاربری</Label>
             <Input
@@ -73,7 +91,7 @@ export function RegisterForm() {
               disabled={loading}
             />
           </div>
-          
+
           <div className="space-y-2">
             <Label htmlFor="password">رمز عبور</Label>
             <Input
@@ -86,18 +104,33 @@ export function RegisterForm() {
             />
           </div>
 
+          <div className="space-y-2">
+            <Label htmlFor="confirmPassword">تکرار رمز عبور</Label>
+            <Input
+              id="confirmPassword"
+              name="confirmPassword"
+              type="confirmPassword"
+              placeholder="رمز عبور را مجددا وارد کنید"
+              required
+              disabled={loading}
+            />
+          </div>
+
           <Button type="submit" className="w-full mt-2" disabled={loading}>
             {loading ? '...درحال ارسال' : 'ساخت اکانت'}
           </Button>
 
-          <div className='text-center space-x-1.5' >
-            <span >اکانت دارید؟</span>
-            <a href="#"  className="ml-auto inline-block text-sm underline-offset-4 hover:underline text-primary ">
+          <div className="text-center space-x-1.5">
+            <span>اکانت دارید؟</span>
+            <a
+              href="/login"
+              className="ml-auto inline-block text-sm underline-offset-4 text-primary "
+            >
               ورود
             </a>
           </div>
         </form>
       </CardContent>
     </Card>
-  );
+  )
 }

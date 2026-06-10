@@ -1,12 +1,12 @@
-@import "tailwindcss";
-@import "tw-animate-css";
-@import "shadcn/tailwind.css";
+@import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
   --font-sans: var(--font-sans);
-  
+
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -123,12 +123,13 @@
   }
   body {
     @apply bg-background text-foreground;
-    font-family: system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:
+      system-ui,
+      -apple-system,
+      'Segoe UI',
+      Tahoma,
+      Geneva,
+      Verdana,
+      sans-serif;
   }
-}
-
-input[type="password"],
-input[type="number"] {
-  direction: ltr;
-  text-align: left;
 }

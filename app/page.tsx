@@ -1,8 +1,13 @@
-'use client';
+'use client'
+
+import { HeroSection } from '@/features/landing/components/HeroSection'
+import { Header } from '@/features/shared/components/layout/Header'
 
 export default function Page() {
-
   return (
-    <div>landing</div>
-  );
+    <>
+      <Header />
+      <HeroSection />
+    </>
+  )
 }
