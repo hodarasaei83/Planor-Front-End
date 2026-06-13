@@ -5,7 +5,8 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-  --font-sans: var(--font-sans);
+  --font-sans: var(--font-iranyekan);
+  --font-iranyekan: var(--font-iranyekan);
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -124,12 +125,18 @@
   body {
     @apply bg-background text-foreground;
     font-family:
+      var(--font-iranyekan),
       system-ui,
       -apple-system,
       'Segoe UI',
       Tahoma,
       Geneva,
       Verdana,
+      'IRANYekan',
+      'IRANYekanWeb',
+      'IRAN Yekan',
+      'IRANSans',
+      'Iranian Sans',
       sans-serif;
   }
 }
