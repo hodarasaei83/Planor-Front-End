@@ -109,7 +109,7 @@ export function RegisterForm() {
             <Input
               id="confirmPassword"
               name="confirmPassword"
-              type="confirmPassword"
+              type="password"
               placeholder="رمز عبور را مجددا وارد کنید"
               required
               disabled={loading}
