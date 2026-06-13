@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export const HeroSection = () => {
   return (
-    <div className="h-[calc(100lvh-90px)] flex flex-col justify-center">
+    <div className="h-[calc(100lvh-110px)] flex flex-col justify-center">
       <h1 className="scroll-m-20 text-center text-4xl font-bold text-balance">
         پلنور، مدیریت وظایف و
       </h1>
@@ -18,10 +18,7 @@ export const HeroSection = () => {
       </p>
       <div className="flex items-center justify-center space-x-4 mt-7">
         <Button asChild size={'lg'}>
-          <Link href="/register">شروع برنامه ریزی با پلنور</Link>
-        </Button>
-        <Button asChild size={'lg'} className="bg-chart-2 text-secondary">
-          <Link href="/login">وارد داشبورد خود شوید</Link>
+          <Link href="/login">شروع برنامه ریزی با پلنور</Link>
         </Button>
       </div>
     </div>
